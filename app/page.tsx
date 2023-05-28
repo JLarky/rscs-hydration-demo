@@ -36,11 +36,13 @@ export default function Page() {
       <form>
         <button type="submit">browser reload</button>
       </form>
+      <div id="logger" suppressHydrationWarning={true}></div>
       <script
         dangerouslySetInnerHTML={{
           __html: `
 const log = (msg) => {
   console.log(msg);
+  document.querySelector("#logger").innerHTML += msg + "<br>";
 }
 // because we set the event handler before we block the browser it would just collect events
 document.querySelector("button").addEventListener("click", () => {
